@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bongabong, Sedrik U.</title>
+    <title>Fetch a Dad Joke</title>
 </head>
 <body>
-  <button id="loadJoke">Get Joke</button>
-  <p id="jokeResult"></p>
+    <button id="loadJoke">Get Joke</button>
+    <p id="jokeResult">dad's joke</p>
+    <script>
+        document.getElementById("loadJoke").addEventListener("click", async () => {
+            const res = await fetch("https://icanhazdadjoke.com/", {
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+            const data = await res.json();
 
-  <script>
-    document.getElementById("loadJoke").addEventListener("click", async () => {
-      const res = await fetch("https://icanhazdadjoke.com/", {
-        headers: {
-          Accept: "application/json",
-        },
-      });
-      const data = await res.json();
-      document.getElementById("jokeResult").innerText = data.joke;
-    });
-  </script>
+            document.getElementById("jokeResult").innerText = data.joke;
+        });
+    </script>
 </body>
 </html>
